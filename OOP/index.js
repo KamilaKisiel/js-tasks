@@ -156,3 +156,53 @@
 //     Object.create({'name': 'Paweł'}), //tu będzie przypisane do proto
 //     Object.assign({}, {'name': 'Paweł'}) //tu będzie przypisane na czysto
 // );
+//.................................................
+// let name = {'name': 'Paweł'};
+// // let newName = Object.create(name);
+// //
+// // console.log(newName); // _proto_ => name: Paweł
+// //
+// // name.name = 'Łukasz';
+// // console.log(newName); // _proto_ => name: Łukasz
+//
+// //.......................................
+// let newObj = Object.assign({}, name);
+// console.log(newObj);
+// name.name = 'Łukasz';
+// console.log(newObj); // _proto_ => name: Paweł
+//............................................
+
+//all objects have a constructor property
+// console.log({}.constructor);
+// var o = {};
+// console.log(o.constructor === Object); //true
+// var o = new Object;
+// console.log(o.constructor === Object); //true
+// var a = [];
+// console.log(a.constructor === Array); //true
+// var a = new Array;
+// console.log(a.constructor === Array); //true
+// var n = new Number(3);
+// console.log(n.constructor === Number); //true
+//.............................................
+// function Tree(name) {
+//     this.name = name
+// }
+// var theTree = new Tree('Redwood');
+// console.log(theTree.constructor); //ƒ Tree(name) {this.name = name}
+//
+// let nextTree = new theTree.constructor('Blackwodd');
+// console.log(nextTree, nextTree.constructor); //Tree {name: "Blackwodd"} ƒ Tree(name) {this.name = name}
+//
+// //.................
+// function  Tree(name, n) {
+//     this.name = name;
+//     this.size = 0;
+//     this.calculateSize = function (n) {
+//         this.size = n*n;
+//     }
+// }
+// var theTree = new Tree('Redwood');
+// theTree.calculateSize(2);
+// console.log(theTree); //Tree {name: "Redwood", size: 4, calculateSize: ƒ}
+//.........................................
