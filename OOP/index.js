@@ -206,3 +206,50 @@
 // theTree.calculateSize(2);
 // console.log(theTree); //Tree {name: "Redwood", size: 4, calculateSize: ƒ}
 //.........................................
+//prototypes are some kind of delegates
+//!!!!!!!pamietać, że setPrototypeOf jest używane tylko w celach szkoleniowych. lepiej używać object.create !!!!!!
+// function talk() {
+//     console.log(this.sound);
+// }
+//
+// let animal = {
+//     talk
+// };
+// console.log(animal);
+// animal.talk(); //undefined
+// let cat = {
+//     sound: 'miałłł'
+// };
+// Object.setPrototypeOf(cat, animal); //mówimy cat'owi, że (jego prototypem jest animal)jest animalem
+//
+// console.log(cat);
+// cat.talk();//szuka metody talk w animalu, bo w cat jej nie ma. tak dziala delegacja
+// ......................................................................
+function talk() {
+    console.log(this.sound);
+}
+
+let animal = {
+    talk
+};
+
+let dog = {
+    sound: 'hał hał'
+};
+Object.setPrototypeOf(dog, animal);
+dog.talk();// hał hał
+//............
+let prarieDog = {
+    howl: function () {
+        console.log(this.sound.toUpperCase())
+    }
+};
+Object.setPrototypeOf(prarieDog, dog);
+prarieDog.howl();
+console.log(prarieDog);//HAŁ HAŁ
+
+animal.talk = function () {
+    console.log('what does the fox say?')
+};
+prarieDog.talk(); //what does the fox say?
+//...................................
