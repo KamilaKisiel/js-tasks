@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery - day two</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+    <style>
+        .active {
+            background: cornflowerblue;
+        }
+        #scroll-top-btn {
+            background: yellow;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+    </style>
+</head>
+<body style="height: 3000px;">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#section-1">Section 1</a></li>
+            <li><a href="#section-2">Section 2</a></li>
+            <li><a href="#section-3">Section 3</a></li>
+            <li><a href="#section-4">Section 4</a></li>
+            <li><a href="#section-5">Section 5</a></li>
+            <li><a href="#section-6">Section 6</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main>
+    <section id="section-1">
+        <h2>Section 1</h2>
+        <p>Zadanie 5</p>
+        <input id="terms-cbx" name="terms-cbx" type="checkbox"/>Akceptuję regulamin<br>
+        <button id="send-btn" class="btn btn-primary" disabled type="submit">Wyślij</button>
+    </section>
+    <section id="section-2">
+        <h2>Section 2</h2>
+        <p> Zadanie 6 i 7</p>
+        <select id="cars"></select>
+    </section>
+    <section id="section-3">
+        <h2>Section 3</h2>
+    </section>
+    <section id="section-4">
+        <h2>Section 4</h2>
+    </section>
+    <section id="section-5">
+        <h2>Section 5</h2>
+        <p> Zadanie 8</p>
+        <div class="input-group">
+            <input id="pass-input" type="text" class="form-control" placeholder="password">
+            <input id="repeat-pass-input" type="text" class="form-control" placeholder="repeat password">
+            <button id="submit-btn" class="btn btn-primary" disabled type="submit">Wyślij</button>
+        </div>
+    </section>
+    <section id="section-6">
+        <h2>Section 6</h2>
+    </section>
+</main>
+
+<span id="scroll-top-btn">
+    <span>GO UP!</span>
+</span>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="2_DOM_JQUERY_EVENTS.js"></script>
+</body>
+</html>
