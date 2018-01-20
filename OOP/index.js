@@ -224,32 +224,75 @@
 //
 // console.log(cat);
 // cat.talk();//szuka metody talk w animalu, bo w cat jej nie ma. tak dziala delegacja
+//PROTOTYPY: referencje do funkcji, z których powstawały dane obiekty
 // ......................................................................
-function talk() {
-    console.log(this.sound);
+// function talk() {
+//     console.log(this.sound);
+// }
+//
+// let animal = {
+//     talk
+// };
+//
+// let dog = {
+//     sound: 'hał hał'
+// };
+// Object.setPrototypeOf(dog, animal);
+// dog.talk();// hał hał
+// //............
+// let prarieDog = {
+//     howl: function () {
+//         console.log(this.sound.toUpperCase())
+//     }
+// };
+// Object.setPrototypeOf(prarieDog, dog);
+// prarieDog.howl();
+// console.log(prarieDog);//HAŁ HAŁ
+//
+// animal.talk = function () {
+//     console.log('what does the fox say?')
+// };
+// prarieDog.talk(); //what does the fox say?
+//...................................
+//czym się różni _proto_ od prototypu?
+//
+// let cat = { breed: 'munchkin'};
+// let myCat = {name: 'Fluffykins'};
+// Object.setPrototypeOf(myCat, cat);
+//
+// console.log(myCat.breed); //munchkin
+//
+// console.log(myCat, myCat.breed);//{name: "Fluffykins"} "munchkin"
+//
+// console.log(myCat._proto_);//undefined
+// console.log(myCat._proto_ === cat);//false
+// cat.tailLength = 15;
+// console.log(myCat.tailLength); //15
+// console.log(myCat);//{name: "Fluffykins"} name:"Fluffykins"__proto__:breed:"munchkin" tailLength:15
+//.......................................
+//keyword: new
+
+function Person(saying) {
+    this.saying = saying
 }
 
-let animal = {
-    talk
+Person.prototype.talk = function () {
+    console.log('I say:', this.saying)
 };
-
-let dog = {
-    sound: 'hał hał'
-};
-Object.setPrototypeOf(dog, animal);
-dog.talk();// hał hał
-//............
-let prarieDog = {
-    howl: function () {
-        console.log(this.sound.toUpperCase())
-    }
-};
-Object.setPrototypeOf(prarieDog, dog);
-prarieDog.howl();
-console.log(prarieDog);//HAŁ HAŁ
-
-animal.talk = function () {
-    console.log('what does the fox say?')
-};
-prarieDog.talk(); //what does the fox say?
-//...................................
+let crockford = new Person('SEMICOLANS!!!1one1!!!');
+console.log(crockford);
+crockford.talk();
+//def 'new': tworzy nowy obiekt (nowy obiekt ma ten sam prototyp jak ten z którego go kopiuje)
+//............................
+//Wyjaśnienie, jak działa 'new'(co się dzieje pod spodem); inny zapis funkcji 'new': wychodzi to samo co w new Person
+function createNew(constructor) {
+    let obj = {};
+    Object.setPrototypeOf(obj, constructor.prototype);
+    let argsArray = Array.from(arguments);
+    argsArray = argsArray.slice(1); //get rid off first argument
+    constructor.apply(obj, argsArray);
+    return obj;
+}
+crockford = createNew(Person, 'SEMICOLANS!!!1one1!!!');
+crockford.talk();
+console.log(crockford); // to jest inny, bardziej skomplikowany zapis tego co robi 'new'
