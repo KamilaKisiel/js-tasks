@@ -4,14 +4,14 @@
 // }
 // funkcja();
 // //window
-//
+//..............................
 // function funkcja() {
 //     'use strict';
 //     console.log(this);
 // };
 // funkcja()
 // // undefined
-//
+//............................
 // let dog = {
 //     sound: "hau hał",
 //     talk: function () {
@@ -29,12 +29,12 @@
 // let talkfunction = dog.talk;
 // talkfunction(); //undefined
 //
-// let boundFunction = talkfunction.bind(dog);
+// let boundFunction = talkfunction.bind(dog); //bind ustawia kontekst (this) na wybrany element
 // boundFunction(); //hau hał
 //
 // let talkAsCat = dog.talk.bind(cat);
 // talkAsCat(); //miał miał
-
+//........................................................
 //Boromir and Faramir function
 
 // let talk = function () {
@@ -50,7 +50,7 @@
 // boromir.speak = talk.bind(boromir);
 //
 // let faramir = {
-//     speak: talk, //talk is clean - bind do
+//     speak: talk,
 //     sound: "but fear no more! I would not take this thing"
 // }
 //
@@ -77,19 +77,19 @@
 // o.method(1, 2); //this === o, [1,2] 3 paramter nie przekazany: undefined
 // o.method.call(x, 1, 2, 3); // this === x, [1,2,3]; o.method.call(1, 2, 3)=> {1}, 2, 3
 // o.method.apply(x, [1, 2, 3]); // this === x (tak samo jak wyżej)
-//
+//....................................................
 // log('object literal');
 
 // var o = {};
 // o.test = 'test';
 // console.log(o);
-// var o = a = 'foo', b = 42, c = {}; //to chyba jest źle
+// var o = {a = 'foo', b = 42, c = {}}; //to chyba jest źle
 // console.log(o);
 //
 // var a = {a, b, c} //shorthand to copy propertys from another object
 // console.log(a);
 
-//object.create tworzy nowy obiekt, więc jak zmienimy cat'a to nie zmienimy nowego obiekty(nie tworzymy referencji, tworzymy nowy obiekt)
+//object.create tworzy nowy obiekt, więc jak zmienimy cat'a to nie zmienimy nowego obiektu(nie tworzymy referencji, tworzymy nowy obiekt)
 //
 // const cat = {
 //     makeSound: function () {
@@ -131,9 +131,9 @@
 // const perski = objectCreate(cat);
 // perski.sound = 'miałłdajwhiskasmiał';
 // perski.makeSound();
-
+//.............................................................................................................
 //object.assign(target, ...sources) target - do czego wrzucami, source - z czego wrzucamy
-//do łączenia obiektów
+//do łączenia obiektów(zmienia pierwszy obiekt, który jest wpisywany w nawias(bo jest targetem), drugiego obiektu nie zmienia)
 
 // let first = {name: 'Tony'};
 // let last = {lastName: 'Stark'};
@@ -272,27 +272,28 @@
 //.......................................
 //keyword: new
 
-function Person(saying) {
-    this.saying = saying
-}
-
-Person.prototype.talk = function () {
-    console.log('I say:', this.saying)
-};
-let crockford = new Person('SEMICOLANS!!!1one1!!!');
-console.log(crockford);
-crockford.talk();
-//def 'new': tworzy nowy obiekt (nowy obiekt ma ten sam prototyp jak ten z którego go kopiuje)
-//............................
-//Wyjaśnienie, jak działa 'new'(co się dzieje pod spodem); inny zapis funkcji 'new': wychodzi to samo co w new Person
-function createNew(constructor) {
-    let obj = {};
-    Object.setPrototypeOf(obj, constructor.prototype);
-    let argsArray = Array.from(arguments);
-    argsArray = argsArray.slice(1); //get rid off first argument
-    constructor.apply(obj, argsArray);
-    return obj;
-}
-crockford = createNew(Person, 'SEMICOLANS!!!1one1!!!');
-crockford.talk();
-console.log(crockford); // to jest inny, bardziej skomplikowany zapis tego co robi 'new'
+// function Person(saying) {
+//     this.saying = saying
+// }
+//
+// Person.prototype.talk = function () {
+//     console.log('I say:', this.saying)
+// };
+// let crockford = new Person('SEMICOLANS!!!1one1!!!');
+// console.log(crockford);
+// crockford.talk();
+// //def 'new': tworzy nowy obiekt (nowy obiekt ma ten sam prototyp jak ten z którego go kopiuje)
+// //............................
+// //Wyjaśnienie, jak działa 'new'(co się dzieje pod spodem); inny zapis funkcji 'new': wychodzi to samo co w new Person
+// function createNew(constructor) {
+//     let obj = {};
+//     Object.setPrototypeOf(obj, constructor.prototype);
+//     let argsArray = Array.from(arguments);
+//     argsArray = argsArray.slice(1); //get rid off first argument
+//     constructor.apply(obj, argsArray);
+//     return obj;
+// }
+// crockford = createNew(Person, 'SEMICOLANS!!!1one1!!!');
+// crockford.talk();
+// console.log(crockford); // to jest inny, bardziej skomplikowany zapis tego co robi 'new'
+//..........................................................
